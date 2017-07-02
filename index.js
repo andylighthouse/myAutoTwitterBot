@@ -8,43 +8,48 @@ var bot = new Twit({
   timeout_ms: 60000
 });
 
-var stream = bot.stream('statuses/filter', {track: 'trump', language:'en'});
+var stream = bot.stream('statuses/filter', {track: 'nba', language:'en'});
 
 stream.on('tweet', function(tweet){
   //console.log(tweet.text+'\n');
   //console.log(tweet.user.screen_name);
-
- //postRetweet(tweet.id_str);
+  postRetweet(tweet.id_str);
   addFollower(tweet.user.screen_name);
-
 });
 
+//retweet posts from stream
 function postRetweet(tweetId){
   bot.post('statuses/retweet/:id', {id: tweetId}, function(err, data, response){
     if(err){
-      console.log(err)
+      console.log(err);
     }else{
-      console.log('Tweeted!')
+      console.log('Tweeted!');
     }
-  })
+  });
 }
 
-//look up relationship, use to for others
+//look up relationship for a user, then follower that user if not followed already
 function addFollower(screen_name){
   bot.get('friendships/lookup', {screen_name: screen_name}, function(err, data, response){
     if(err){
-      console.log(err)
+      console.log(err);
     }else{
-      if (connections[0] === 'none'){
-        console.log(here)
+      if(data[0].connections[0] === 'none'){
+        bot.post('friendships/create', {screen_name: screen_name}, function(err, data, response){
+          if(err){
+            console.log(err);
+          }else{
+            console.log('Followed!');
+          }
+        });
       }
     }
-  })
+  });
 }
 
 
-
-// bot.get('search/tweets', {q: 'from:@wojespn', count: 10}, function(err, data, response){
+//search function
+// bot.get('search/tweets', {q: 'from:TWITTER_HANDLE', count: 10}, function(err, data, response){
 //   if(err){
 //     console.log(err);
 //   }else{

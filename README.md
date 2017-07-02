@@ -1,0 +1,1 @@
+A bot that retweets about trump, basketball and hiphop
