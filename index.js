@@ -1,6 +1,6 @@
 var bot = require('./config')
 
-var stream = bot.stream('statuses/filter', {follow: '16201775, 755953153, 1407822289, 58601997, 538547125, 37013920', language:'en', filter_level: 'low'});
+var stream = bot.stream('statuses/filter', {follow: '16201775, 755953153, 1407822289, 58601997, 538547125, 37013920', language:'en', filter_level: 'medium'});
 stream.on('tweet', function(tweet){
   postRetweet(tweet.id_str);
   addFollower(tweet.user.screen_name);
