@@ -1,6 +1,6 @@
 var bot = require('./config')
 
-var stream = bot.stream('statuses/filter', {follow: '16201775, 755953153, 58601997, 538547125, 1407822289, 37013920', language:'en'});
+var stream = bot.stream('statuses/filter', {follow: '16201775, 755953153, 37013920', language:'en' filter_level: 'medium'});
 stream.on('tweet', function(tweet){
   postRetweet(tweet.id_str);
   addFollower(tweet.user.screen_name);
@@ -37,7 +37,7 @@ function addFollower(screen_name){
 }
 
 
-//search function
+// //search function
 // bot.get('search/tweets', {q: 'from:TWITTER_HANDLE', count: 10}, function(err, data, response){
 //   if(err){
 //     console.log(err);
@@ -58,5 +58,6 @@ function addFollower(screen_name){
 //     console.log(data)
 //   }
 // })
+
 
 
