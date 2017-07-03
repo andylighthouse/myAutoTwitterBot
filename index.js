@@ -1,9 +1,10 @@
 var bot = require('./config')
 
-var stream = bot.stream('statuses/filter', {follow: '50323173, 755953153, 58601997, 538547125, 1407822289, 37013920', language:'en'});
+var stream = bot.stream('statuses/filter', {follow: '16201775, 755953153, 58601997, 538547125, 1407822289, 37013920', language:'en'});
 stream.on('tweet', function(tweet){
-  postRetweet(tweet.id_str);
-  addFollower(tweet.user.screen_name);
+  console.log(tweet.id_str)
+  //postRetweet(tweet.id_str);
+  //addFollower(tweet.user.screen_name);
 });
 
 //retweet posts from stream
@@ -51,7 +52,7 @@ function addFollower(screen_name){
 // });
 
 // //look up twitter id
-// bot.get('friendships/lookup', {screen_name: 'wojespn'}, function(err, data, response){
+// bot.get('friendships/lookup', {screen_name: 'sixers'}, function(err, data, response){
 //   if(err){
 //     console.log(err);
 //   }else{
