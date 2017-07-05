@@ -8,7 +8,7 @@ var stream = bot.stream('user');
 stream.on('tweet', function(tweet){
   var userId = tweet.user.id + ''
   postRetweet(tweet.id_str, userId);
-  addFollower(tweet.user.screen_name);
+  //addFollower(tweet.user.screen_name);
 });
 
 //retweet posts from stream
