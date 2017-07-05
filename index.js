@@ -2,13 +2,13 @@ var bot = require('./config')
 console.log('bot starting....')
 
 //add id here of the people you want to retweet
-var listOfId = ['517377422', '16201775', '755953153', '1407822289', '58601997', '538547125', '37013920']
+var listOfId = ['16201775', '755953153', '1407822289', '58601997', '538547125', '37013920']
 
 var stream = bot.stream('user');
 stream.on('tweet', function(tweet){
   var userId = tweet.user.id + ''
   postRetweet(tweet.id_str, userId);
-  //addFollower(tweet.user.screen_name);
+  addFollower(tweet.user.screen_name);
 });
 
 //retweet posts from stream
