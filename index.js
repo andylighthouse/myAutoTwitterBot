@@ -83,41 +83,25 @@ var listOfId1 = ['51293016',
   '14222518',
   '2296493942',
   '2982461789']
-var stream = bot.stream('statuses/filter', {follow: '16201775, 755953153, 1407822289, 58601997, 538547125, 37013920', language:'en', filter_level: 'medium'});
-  stream.on('tweet', function(tweet){
-    postRetweet(tweet.id_str);
-    addFollower(tweet.user.screen_name);
- });
- 
- //retweet posts from stream
- function postRetweet(tweetId){
-   bot.post('statuses/retweet/:id', {id: tweetId}, function(err, data, response){
-     if(err){
-       console.log(err);
-     }else{
-       console.log('Tweeted!');
-     }
-   });
- }
- 
- //look up relationship for a user, then follower that user if not followed already
- function addFollower(screen_name){
-   bot.get('friendships/lookup', {screen_name: screen_name}, function(err, data, response){
-     if(err){
-       console.log(err);
-     }else{
-       if(data[0].connections[0] === 'none'){
-         bot.post('friendships/create', {screen_name: screen_name}, function(err, data, response){
-           if(err){
-             console.log(err);
-           }else{
-             console.log('Followed!');
-           }
-         });
-       }
-     }
-   });
- }
+
+var stream = bot.stream('user');
+stream.on('tweet', function(tweet){
+  var userId = tweet.user.id + ''
+  postRetweet(tweet.id_str, userId);
+});
+
+//retweet posts from stream
+function postRetweet(tweetId, userId){
+  if (listOfId1.includes(userId)){
+    bot.post('statuses/retweet/:id', {id: tweetId}, function(err, data, response){
+      if(err){
+        console.log(err);
+      }else{
+        console.log('Tweeted!');
+      }
+    });
+  }
+}
 
 
 
