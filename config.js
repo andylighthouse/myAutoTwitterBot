@@ -9,4 +9,3 @@ timeout_ms: 60000
 }) 
 
 module.exports = bot
-//MYBOT
