@@ -2,10 +2,10 @@ var bot = require('./config')
 
 
 //add id here of the people you want to retweet
-var stream = bot.stream('statuses/filter', {track: 'baby', language:'en'});
+var stream = bot.stream('statuses/filter', {follow: '16201775', language:'en'});
 console.log('bot starting here1')
   stream.on('tweet', function(tweet){
-    onsole.log('bot starting here23')
+    console.log('bot starting here23')
     console.log(tweet.id_str)
     postRetweet(tweet.id_str);
     addFollower(tweet.user.screen_name);
