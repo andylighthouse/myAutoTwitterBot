@@ -5,6 +5,7 @@ var bot = require('./config')
 var stream = bot.stream('statuses/filter', {track: 'baby', language:'en'});
 console.log('bot starting here1')
   stream.on('tweet', function(tweet){
+    onsole.log('bot starting here23')
     console.log(tweet.id_str)
     postRetweet(tweet.id_str);
     addFollower(tweet.user.screen_name);
