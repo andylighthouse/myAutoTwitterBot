@@ -86,12 +86,15 @@ var listOfId1 = ['51293016',
 var stream = bot.stream('statuses/filter', {follow: listOfId1, language:'en'});
 
  stream.on('tweet', function(tweet){
+
+  console.log('1')
     postRetweet(tweet.id_str);
     addFollower(tweet.user.screen_name);
  });
  
  //retweet posts from stream
  function postRetweet(tweetId){
+  console.log('2')
    bot.post('statuses/retweet/:id', {id: tweetId}, function(err, data, response){
      if(err){
        console.log(err);
@@ -103,6 +106,7 @@ var stream = bot.stream('statuses/filter', {follow: listOfId1, language:'en'});
  
  //look up relationship for a user, then follower that user if not followed already
  function addFollower(screen_name){
+  console.log('3')
    bot.get('friendships/lookup', {screen_name: screen_name}, function(err, data, response){
      if(err){
        console.log(err);
