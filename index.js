@@ -2,7 +2,7 @@ var bot = require('./config')
 console.log('bot starting....')
 
 //add id here of the people you want to retweet
-var listOfId = []
+var listOfId = ['755953153', '1094922224', '292116015', '19363044', '58601997']
 
 var stream = bot.stream('user');
 stream.on('tweet', function(tweet){
@@ -12,19 +12,16 @@ stream.on('tweet', function(tweet){
 
 //retweet posts from stream
 function postRetweet(tweetId, userId){
-  //
-    bot.post('statuses/unretweet/:id', {id: tweetId}, function(err, data, response){
+  if (listOfId.includes(userId)){
+    bot.post('statuses/retweet/:id', {id: tweetId}, function(err, data, response){
       if(err){
         console.log(err);
       }else{
         console.log('Tweeted!');
       }
     });
-  //}
+  }
 }
-
-
-
 
 
 
