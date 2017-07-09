@@ -12,15 +12,15 @@ stream.on('tweet', function(tweet){
 
 //retweet posts from stream
 function postRetweet(tweetId, userId){
-  if (listOfId.includes(userId)){
-    bot.post('statuses/retweet/:id', {id: tweetId}, function(err, data, response){
+  //
+    bot.post('statuses/unretweet/:id', {id: tweetId}, function(err, data, response){
       if(err){
         console.log(err);
       }else{
         console.log('Tweeted!');
       }
     });
-  }
+  //}
 }
 
 
