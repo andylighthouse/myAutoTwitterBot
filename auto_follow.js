@@ -2,7 +2,7 @@ var bot = require('./config')
 console.log("running...")
 
 //do not run for too long, will get banned from Twitter for making to many calls to the api
-var stream = bot.stream('statuses/filter', {track:'nba,trump,simpsons', language:'en'});
+var stream = bot.stream('statuses/filter', {track:'simpsons', language:'en'});
 stream.on('tweet', function(tweet){
   addFollower(tweet.user.screen_name);
 });
