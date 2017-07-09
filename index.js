@@ -12,7 +12,7 @@ stream.on('tweet', function(tweet){
 
 //retweet posts from stream
 function postRetweet(tweetId, userId){
-  if (listOfId.includes(userId)){
+  //if (listOfId.includes(userId)){
     bot.post('statuses/retweet/:id', {id: tweetId}, function(err, data, response){
       if(err){
         console.log(err);
@@ -20,7 +20,7 @@ function postRetweet(tweetId, userId){
         console.log('Tweeted!');
       }
     });
-  }
+  //}
 }
 
 
