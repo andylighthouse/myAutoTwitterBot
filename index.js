@@ -2,13 +2,14 @@ var bot = require('./config')
 console.log('bot starting....')
 
 //add id here of the people you want to retweet
-var listOfId = ['755953153', '1094922224', '292116015', '19363044', '58601997', '599838934', '706915245575565300', '882804910755991600']
+var listOfId = ['755953153', '1094922224', '292116015', '19363044', '58601997', '599838934']
+var idToFololow = listOfId.join()
 
-var stream = bot.stream('statuses/filter', {follow: listOfId, language:'en'});
+var stream = bot.stream('statuses/filter', {follow: idToFololow});
+console.log('start stream..');
   stream.on('tweet', function(tweet){
-    var userId = tweet.user.id + ''
-    postRetweet(tweet.id_str, userId);
-    //addFollower(tweet.user.screen_name);
+    postRetweet(tweet.id_str, tweet.user.id_str);
+    addFollower(tweet.user.screen_name);
   });
 
 //retweet posts from stream
