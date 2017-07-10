@@ -1,5 +1,5 @@
-var bot = require('./config')
-console.log('bot starting....')
+var bot = require('./config');
+console.log('bot starting....');
 
 //add id here of the people you want to retweet
 var listOfId = ['755953153', '1094922224', '292116015', '19363044', '58601997', '599838934']
@@ -8,10 +8,10 @@ var idToFololow = listOfId.join()
 var stream = bot.stream('statuses/filter', {follow: idToFololow});
 stream.on('tweet', function(tweet){
   postRetweet(tweet.id_str, tweet.user.id_str);
-  var followerName = tweet.user.screen_name
+  var followerName = tweet.user.screen_name;
 
   //try adding a new follower every 5 hours
-  setInterval(addFollower(followerName), 18000000)
+  setInterval(addFollower(followerName), 18000000);
 });
 
 //retweet posts from stream
@@ -24,6 +24,8 @@ function postRetweet(tweetId, userId){
         console.log('Tweeted!');
       }
     });
+  }else{
+    console.log('Retweets..');
   }
 }
 

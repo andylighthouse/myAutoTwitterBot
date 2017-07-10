@@ -6,6 +6,6 @@ consumer_secret: process.env.MYBOT_CONSUMER_SECRET,
 access_token: process.env.MYBOT_ACCESS_TOKEN,
 access_token_secret: process.env.MYBOT_ACCESS_TOKEN_SECRET,
 timeout_ms: 60000
-}) 
+}); 
 
-module.exports = bot
+module.exports = bot;

@@ -1,6 +1,6 @@
-var bot = require('./config')
+var bot = require('./config');
 
-var inputId = process.argv[2]
+var inputId = process.argv[2];
 
 //search function
 bot.get('search/tweets', {q: 'from:' + inputId, count: 10}, function(err, data, response){
