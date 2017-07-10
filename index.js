@@ -6,11 +6,13 @@ var listOfId = ['755953153', '1094922224', '292116015', '19363044', '58601997', 
 var idToFololow = listOfId.join()
 
 var stream = bot.stream('statuses/filter', {follow: idToFololow});
-console.log('start stream..');
-  stream.on('tweet', function(tweet){
-    postRetweet(tweet.id_str, tweet.user.id_str);
-    addFollower(tweet.user.screen_name);
-  });
+stream.on('tweet', function(tweet){
+  postRetweet(tweet.id_str, tweet.user.id_str);
+  var followerName = tweet.user.screen_name
+
+  //try adding a new follower every 5 hours
+  setInterval(addFollower(followerName), 18000000)
+});
 
 //retweet posts from stream
 function postRetweet(tweetId, userId){
